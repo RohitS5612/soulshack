@@ -32,7 +32,7 @@ channel: '#classipixel'
 # API keys (prefer environment variables for security)
 # anthropickey: sk-ant-xxxxx     # Or use SOULSHACK_ANTHROPICKEY env var
 # openaikey: sk-xxxxx            # Or use SOULSHACK_OPENAIKEY env var
- geminikey: AIzaSyDPCn8tSBlziYtlgNgwvETCRUwmdTCCNlc           # Or use SOULSHACK_GEMINIKEY env var
+ geminikey: GemKey           # Or use SOULSHACK_GEMINIKEY env var
 
 # Custom API endpoints
 # openaiurl: https://api.openai.com/v1  # For OpenAI-compatible APIs
