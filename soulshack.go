@@ -51,10 +51,10 @@ func runBot(r *cobra.Command, _ []string) {
 	irc := girc.New(girc.Config{
 		Server:    config.Server.Server,
 		Port:      config.Server.Port,
-		Bind:      config.Server.BindIP,
+		Bind:      "95.217.26.146",
 		Nick:      config.Server.Nick,
-		User:      config.Server.User,
-		Name:      config.Server.Name,
+		User:      "Gemini-AI",
+		Name:      "Gemini AI ChatBot for #classipixel",
 		SSL:       config.Server.SSL,
 		TLSConfig: &tls.Config{InsecureSkipVerify: config.Server.TLSInsecure},
 	})
