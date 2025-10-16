@@ -21,7 +21,7 @@ tls: false
 model: gemini/gemini-2.5-flash
 
 # API keys (prefer environment variables for security)
-geminikey: API
+geminikey: GEMINI_API_KEY
 
 # Generation parameters
 temperature: 1.0
