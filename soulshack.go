@@ -51,7 +51,7 @@ func runBot(r *cobra.Command, _ []string) {
 	irc := girc.New(girc.Config{
 		Server:    config.Server.Server,
 		Port:      config.Server.Port,
-		Bind:      config.Server.BindIP
+		Bind:      config.Server.BindIP,
 		Nick:      config.Server.Nick,
 		User:      config.Server.User,
 		Name:      config.Server.Name,
