@@ -1,0 +1,126 @@
+# ============================================================================
+# BASIC CONFIGURATION
+# ============================================================================
+
+# Bot nickname on IRC
+nick: Gemini-AI
+
+# IRC channel to join (include # for public channels)
+channel: '#classipixel'
+# channel: "##private-channel"  # Some networks use ## for unofficial channels
+
+# IRC server connection details
+ server: irc.quakenet.org       # Default: localhost
+ port: 6667                    # Default: 6667 (use 6697 for TLS)
+ tls: false                     # Enable TLS/SSL encryption
+# tlsinsecure: false           # Skip cert verification (for self-signed certs)
+
+# SASL authentication (for registered nicks)
+# saslnick: chatbot
+# saslpass: your_password
+
+# ============================================================================
+# LLM CONFIGURATION
+# ============================================================================
+
+# Model selection (format: provider/model-name)
+#model: anthropic/claude-sonnet-4-20250514
+# model: openai/gpt-4o
+ model: gemini/gemini-2.5-flash
+# model: ollama/llama3.2          # For local models
+
+# API keys (prefer environment variables for security)
+# anthropickey: sk-ant-xxxxx     # Or use SOULSHACK_ANTHROPICKEY env var
+# openaikey: sk-xxxxx            # Or use SOULSHACK_OPENAIKEY env var
+ geminikey: AIzaSyDPCn8tSBlziYtlgNgwvETCRUwmdTCCNlc           # Or use SOULSHACK_GEMINIKEY env var
+
+# Custom API endpoints
+# openaiurl: https://api.openai.com/v1  # For OpenAI-compatible APIs
+# ollamaurl: http://localhost:11434     # Default for Ollama
+# ollamakey: xxxxx                      # Bearer token for secured Ollama endpoints
+
+# Generation parameters
+# maxtokens: 4096                # Maximum response length
+ temperature: 1.0               # 0.0-2.0, higher = more creative
+# top_p: 1.0                    # 0.0-1.0, nucleus sampling parameter
+# apitimeout: 5m                # API request timeout
+
+# ============================================================================
+# BOT BEHAVIOR
+# ============================================================================
+
+# System prompt defining personality and rules
+prompt: |
+  Your job is to learn about this channel and server,
+   and the people inside,
+   and to give that information to the people who ask.
+
+prompt: |
+  You are currently on the Quakenet IRC Network,
+   on the channel classipixel.
+  The Classipixel channel is for the user RohitS5612,
+   which owns the ClassiCube Server, Classipixel.
+  There might be an user that relays messages from the game server to this channel,
+   listen to what he says,
+   but don't respond to it unless said to do so.
+
+# Initial greeting when joining channel
+greeting: greeting
+
+# Require addressing by nick (e.g., "chatbot: hello")
+ addressed: true                # Default: true
+
+# Admin control (hostmasks who can use /set, /get, etc.)
+ admins:
+   - "*!*e7b4bb6755@*.nextgamers.eu"
+   - "*!*e7b4bb6755@RohitS5612.users.quakenet.org"
+   - "*!*@RohitS5612.users.quakenet.org"
+   - "*!*@152.208.25.5"
+    # Wildcard patterns supported
+
+# ============================================================================
+# SESSION MANAGEMENT
+# ============================================================================
+
+ sessionduration: 60m           # Clear context after idle time (default: 10m)
+ sessionhistory: 250            # Max messages to keep in context
+ chunkmax: 350                  # Max chars per IRC message
+
+# ============================================================================
+# TOOLS CONFIGURATION
+# ============================================================================
+
+# Unified tool system - handles shell scripts, MCP servers, and IRC tools
+# Shell scripts: provide direct path to executable
+# MCP servers: provide path to JSON config file
+# IRC tools: use irc_ prefix (e.g., irc_op, irc_kick)
+tool:
+  - examples/tools/datetime.sh   # Shell script for date/time queries
+
+  - irc_op                        # Grant/revoke op status
+  - irc_kick                      # Kick users from channel
+  - irc_ban                       # Ban/unban users (smart hostmask lookup)
+  - irc_mode_set                  # Set channel modes (+m, +t, +n, +i, +k, +l)
+  - irc_invite                    # Invite users to channel
+  - irc_mode_query                # Query current channel modes
+  - irc_names                     # List users in channel with prefixes
+  - irc_whois                     # Get detailed user info (instant, cached)
+  - irc_topic                     # Change channel topic
+  - irc_action                    # Send /me actions
+
+  # - examples/mcp/filesystem.json  # MCP server config for file operations
+  # - examples/mcp/git.json         # MCP server config for git operations
+  # - examples/tools/weather.py     # Another shell script example
+
+# Example MCP server JSON config (save as filesystem.json):
+# {
+#   "command": "npx",
+#   "args": ["@modelcontextprotocol/server-filesystem", "/tmp"],
+#   "env": {}
+# }
+
+# ============================================================================
+# DEBUGGING
+# ============================================================================
+
+ verbose: true                 # Enable debug logging
